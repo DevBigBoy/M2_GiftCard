@@ -1,31 +1,79 @@
-The README.md file content is generated automatically, see [Magento module README.md](https://github.com/magento/devdocs/wiki/Magento-module-README.md) for more information.
+# Market_GiftCard
 
-# Market_GiftCard module
+Magento 2 module that provides gift card functionality, allowing customers to purchase and redeem gift cards during checkout.
 
+## Overview
 
+The module creates and manages gift cards with unique codes that can be assigned to customers and redeemed against orders. Each gift card tracks its initial and current value, recipient details, and full usage history through the `market_gift_card` and `market_gift_card_usage` tables.
 
-## Installation details
+## Installation
 
-For information about a module installation in Magento 2, see [Enable or disable modules](https://devdocs.magento.com/guides/v2.4/install-gde/install/cli/install-cli-subcommands-enable.html).
+### Manual
 
-## Extensibility
+1. Copy the module to `app/code/Market/GiftCard`
+2. Run the following commands:
 
-Extension developers can interact with the Market_GiftCard module. For more information about the Magento extension mechanism, see [Magento plug-ins](https://devdocs.magento.com/guides/v2.4/extension-dev-guide/plugins.html).
+```bash
+bin/magento module:enable Market_GiftCard
+bin/magento setup:upgrade
+bin/magento setup:di:compile
+bin/magento setup:static-content:deploy
+bin/magento cache:flush
+```
 
-[The Magento dependency injection mechanism](https://devdocs.magento.com/guides/v2.4/extension-dev-guide/depend-inj.html) enables you to override the functionality of the Market_GiftCard module.
+### Via Composer
 
-### Layouts
+```bash
+composer require market/module-gift-card
+bin/magento module:enable Market_GiftCard
+bin/magento setup:upgrade
+bin/magento setup:di:compile
+bin/magento setup:static-content:deploy
+bin/magento cache:flush
+```
 
-The module introduces layout handles in the `view/adminhtml/layout` directory.
+## Database Schema
 
-For more information about a layout in Magento 2, see the [Layout documentation](https://devdocs.magento.com/guides/v2.4/frontend-dev-guide/layouts/layout-overview.html).
+### `market_gift_card`
 
-### UI components
+Stores gift card records.
 
-You can extend product and category updates using the UI components located in the `view/adminhtml/ui_component` directory.
+| Column | Type | Description |
+|---|---|---|
+| `id` | int | Primary key |
+| `assigned_customer_id` | int | FK to `customer_entity` |
+| `code` | varchar(255) | Unique gift card code |
+| `status` | int | Card status (active, used, expired, etc.) |
+| `initial_value` | decimal(12,4) | Original card value |
+| `current_value` | decimal(12,4) | Remaining balance |
+| `created_at` | timestamp | Creation date |
+| `updated_at` | timestamp | Last updated date |
+| `recipient_email` | varchar(255) | Recipient email address |
+| `recipient_name` | varchar(255) | Recipient name |
 
-For information about a UI component in Magento 2, see [Overview of UI components](https://devdocs.magento.com/guides/v2.4/ui_comp_guide/bk-ui_comps.html).
+### `market_gift_card_usage`
 
-## Additional information
+Tracks usage history per gift card.
 
-For information about significant changes in patch releases, see [Release information](https://devdocs.magento.com/guides/v2.4/release-notes/bk-release-notes.html).
+| Column | Type | Description |
+|---|---|---|
+| `id` | int | Primary key |
+| `gift_card_id` | int | FK to `market_gift_card` |
+| `order_id` | int | FK to `sales_order` |
+| `value_change` | decimal(20,6) | Amount used in this transaction |
+| `notes` | text | Optional notes |
+| `created_at` | timestamp | Usage date |
+
+## Uninstalling
+
+```bash
+bin/magento module:uninstall Market_GiftCard
+bin/magento setup:upgrade
+bin/magento cache:flush
+```
+
+## Dependencies
+
+- `Magento_Catalog`
+- `Magento_Sales`
+- `Magento_Customer`
