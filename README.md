@@ -39,7 +39,7 @@ bin/magento cache:flush
 Stores gift card records.
 
 | Column | Type | Description |
-|---|---|---|
+| --- | --- | --- |
 | `id` | int | Primary key |
 | `assigned_customer_id` | int | FK to `customer_entity` |
 | `code` | varchar(255) | Unique gift card code |
@@ -56,13 +56,45 @@ Stores gift card records.
 Tracks usage history per gift card.
 
 | Column | Type | Description |
-|---|---|---|
+| --- | --- | --- |
 | `id` | int | Primary key |
 | `gift_card_id` | int | FK to `market_gift_card` |
 | `order_id` | int | FK to `sales_order` |
 | `value_change` | decimal(20,6) | Amount used in this transaction |
 | `notes` | text | Optional notes |
 | `created_at` | timestamp | Usage date |
+
+## Module Architecture
+
+### Service Contracts (`Api/Data/`)
+
+| Interface | Description |
+| --- | --- |
+| `GiftCardInterface` | Defines getters/setters for all gift card fields |
+| `GiftCardUsageInterface` | Defines getters/setters for usage record fields |
+
+### Models (`Model/`)
+
+| Class | Description |
+| --- | --- |
+| `GiftCard` | Implements `GiftCardInterface`, extends `AbstractModel` |
+| `GiftCardUsage` | Implements `GiftCardUsageInterface`, extends `AbstractModel` |
+
+### Resource Models (`Model/ResourceModel/`)
+
+| Class | Table |
+| --- | --- |
+| `GiftCard` | `market_gift_card` |
+| `GiftCard/Collection` | Collection for gift card records |
+| `GiftCardUsage` | `market_gift_card_usage` |
+| `GiftCardUsage/Collection` | Collection for usage records |
+
+### Dependency Injection (`etc/di.xml`)
+
+Registers interface-to-model preferences so the object manager resolves:
+
+- `GiftCardInterface` → `Model\GiftCard`
+- `GiftCardUsageInterface` → `Model\GiftCardUsage`
 
 ## Uninstalling
 
