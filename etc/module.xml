@@ -4,6 +4,7 @@
     <module name="Market_GiftCard">
         <sequence>
             <module name="Magento_Catalog" />
+            <module name="Magento_Sales" />
         </sequence>
     </module>
 </config>
