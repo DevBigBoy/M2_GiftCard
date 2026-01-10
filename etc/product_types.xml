@@ -6,11 +6,11 @@
  */
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Catalog:etc/product_types.xsd">
-    <type name="giftcard" label="Gift Card Product" modelInstance="Magento\Catalog\Model\Product\Type\Virtual" indexPriority="20" sortOrder="40">
-        <indexerModel instance="Magento\Catalog\Model\ResourceModel\Product\Indexer\Price\VirtualProductPrice" />
+    <type name="giftcard" label="Gift Card Product" modelInstance="Market\GiftCard\Model\Type\GiftCard" indexPriority="20" sortOrder="40">
+        <indexerModel instance="Market\GiftCars\Model\ResourceModel\Product\Indexer\Price\GiftCardProductPrice" />
         <customAttributes>
-            <attribute name="is_real_product" value="false"/>
-            <attribute name="refundable" value="false"/>
+            <attribute name="is_real_product" value="true"/>
+            <attribute name="refundable" value="true"/>
         </customAttributes>
     </type>
 </config>
