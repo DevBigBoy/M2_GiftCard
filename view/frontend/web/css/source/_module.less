@@ -1,0 +1,57 @@
+& when (@media-common = true) {
+    .giftcard-options {
+        margin-bottom: 20px;
+        padding: 20px;
+        background: #f9f9f9;
+        border: 1px solid #e0e0e0;
+        border-radius: 6px;
+
+        .field {
+            margin-bottom: 15px;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+
+            .label {
+                display: block;
+                margin-bottom: 5px;
+                font-weight: 600;
+                font-size: 14px;
+                color: #333;
+            }
+
+            .control {
+                .input-text {
+                    width: 100%;
+                    padding: 10px 12px;
+                    border: 1px solid #c2c2c2;
+                    border-radius: 4px;
+                    font-size: 14px;
+                    transition: border-color 0.2s ease;
+
+                    &:focus {
+                        border-color: #1979c3;
+                        outline: none;
+                        box-shadow: 0 0 0 2px rgba(25, 121, 195, 0.15);
+                    }
+
+                    &::placeholder {
+                        color: #999;
+                    }
+                }
+            }
+
+            &.required {
+                .label {
+                    &:after {
+                        content: '*';
+                        color: #e02b27;
+                        margin-left: 3px;
+                        font-size: 12px;
+                    }
+                }
+            }
+        }
+    }
+}

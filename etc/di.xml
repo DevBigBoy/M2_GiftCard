@@ -16,4 +16,13 @@
             <argument name="productType" xsi:type="const">Market\GiftCard\Model\Type\GiftCard::TYPE_CODE</argument>
         </arguments>
     </virtualType>
+
+
+    <type name="Magento\InventorySales\Model\IsProductSalableForRequestedQtyCondition\IsProductSalableForRequestedQtyConditionChain" >
+        <plugin name="PreventInventoryForGiftCard" type="Market\GiftCard\Plugin\PreventInventoryForGiftCard" />
+    </type>
+
+    <type name="Magento\CatalogInventory\Model\Quote\Item\QuantityValidator" >
+        <plugin name="PreventQtyLookupForGiftCard" type="\Market\GiftCard\Plugin\PreventQtyLookupForGiftCard" />
+    </type>
 </config>
