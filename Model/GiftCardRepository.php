@@ -92,7 +92,7 @@ class GiftCardRepository implements GiftCardRepositoryInterface
     /**
      * @inheritDoc
      */
-    public function save(GiftCardInterface $giftCard, int $storeId = null): GiftCardInterface
+    public function save(GiftCardInterface $giftCard, ?int $storeId = null): GiftCardInterface
     {
         try {
             $canNotify = !(bool)$giftCard->getId();

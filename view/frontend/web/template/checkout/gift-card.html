@@ -8,6 +8,9 @@
 
     <div class="content gift-card" data-role="content">
         <span data-bind="text: code" if="isApplied"></span>
+        <span if="isApplied">
+            <button type="button" click="remove"><span translate="'Remove it!'"></span></button>
+        </span>
         <div class="gift-card__applied" ifnot="isApplied">
             <input type="text" data-bind="value: code"/>
             <button type="button" click="update"><span translate="'Apply it!'"></span></button>

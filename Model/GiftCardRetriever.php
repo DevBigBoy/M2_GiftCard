@@ -18,10 +18,7 @@ class GiftCardRetriever implements GiftCardRetrieverInterface
     private QuoteIdMaskFactory $quoteIdMaskFactory;
     private GiftCardRepository $giftCardRepository;
     private CartRepositoryInterface $cartRepository;
-    /**
-     * @var \Magento\Checkout\Model\PaymentDetailsFactory
-     */
-    protected PaymentDetailsFactory $paymentDetailsFactory;
+    private PaymentDetailsFactory $paymentDetailsFactory;
     private PaymentMethodManagementInterface $paymentMethodManagement;
     private CartTotalRepositoryInterface $cartTotalsRepository;
 

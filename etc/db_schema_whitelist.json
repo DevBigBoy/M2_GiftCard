@@ -43,5 +43,17 @@
             "MARKET_GIFT_CARD_QUOTE_QUOTE_ID_QUOTE_ENTITY_ID": true,
             "PRIMARY": true
         }
+    },
+    "quote": {
+        "column": {
+            "gift_card_amount": true,
+            "base_gift_card_amount": true
+        }
+    },
+    "quote_address": {
+        "column": {
+            "gift_card_amount": true,
+            "base_gift_card_amount": true
+        }
     }
 }

@@ -34,7 +34,7 @@ class GiftCardQuote extends AbstractDb
                     $quoteId
                 )
             );
-        } elseif (!$isSet && !$giftCardId) {
+        } elseif ($isSet && !$giftCardId) {
             //delete existing record
             $connection = $this->getConnection();
             $connection->delete(

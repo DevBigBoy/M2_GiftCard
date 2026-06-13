@@ -31,7 +31,7 @@ interface GiftCardRepositoryInterface
      * @return GiftCardInterface
      * @throws CouldNotSaveException
      */
-    public function save(GiftCardInterface $giftCard, int $storeId = null): GiftCardInterface;
+    public function save(GiftCardInterface $giftCard, ?int $storeId = null): GiftCardInterface;
 
     /**
      * @param \Market\GiftCard\Api\Data\GiftCardInterface $giftCard

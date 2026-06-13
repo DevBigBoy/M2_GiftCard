@@ -1,25 +1,21 @@
 define([
-    'ko',
-    'Magento_Checkout/js/model/totals',
     'uiComponent',
-    'Magento_Checkout/js/model/step-navigator',
     'Magento_Checkout/js/model/quote',
     'Magento_Checkout/js/model/full-screen-loader',
     'mage/storage',
     'Market_GiftCard/js/resource-url-manager',
     'Magento_Checkout/js/model/payment-service',
-    'Magento_Checkout/js/model/error-processor',
+    'Magento_Checkout/js/model/payment/method-converter',
+    'Magento_Checkout/js/model/error-processor'
 ], function (
-    ko,
-    totals,
     Component,
-    stepNavigator,
     quote,
     fullScreenLoader,
     storage,
     resourceUrlManager,
     paymentService,
-    errorProcessor,
+    methodConverter,
+    errorProcessor
 ) {
     'use strict';
 
@@ -35,14 +31,7 @@ define([
         code: '',
         isApplied: false,
 
-        /**
-         * @inheritdoc
-         */
-        initialize: function () {
-            this._super();
-        },
-
-        update: function (){
+        update: function () {
             fullScreenLoader.startLoader();
 
             return storage.post(
@@ -63,6 +52,5 @@ define([
                 }
             );
         }
-
     });
 });
